@@ -11,9 +11,13 @@
 </head>
 
 <body>
-    @extends('Layouts.partials.header')
+    @include('Layouts.partials.header')
     <main>
-        @yield('content')
+        <section class="banner">
+            <h1 class="text-center bg-dark mt-4 text-light py-4">DC Comics</h1>
+            <img src="{{ Vite::asset('resources/img/jumbotron.jpg') }}" alt="">
+        </section>
+
     </main>
 </body>
 
