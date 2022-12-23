@@ -14,23 +14,29 @@
                     <th scope="col">Titolo</th>
                     <th scope="col">Serie</th>
                     <th scope="col">Prezzo</th>
-                    <th scope="col">Dettagli</th>
+                    <th scope="col"></th>
 
                 </tr>
             </thead>
             <tbody>
 
 
-                @foreach ($Comics as $comic)
+                @foreach ($comics as $comic)
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ $comic->id }}</th>
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->series }}</td>
                         <td>{{ $comic->price }}</td>
-                        <td> <a class="btn btn-success" href="{{ route('Comics.show', $comic->id) }}">Dettagli</a></td>
-                        <td> <a class="btn btn-warning" href="{{ route('Comics.edit', $comic->id) }}">Modifica</a></td>
-                        <td> <a class="btn btn-danger" href="">Cancella</a></td>
-                        {{-- {{ route('Comics.delete', $comic->id) }} --}}
+                        <td> <a class="btn btn-warning" href="{{ route('comics.edit', $comic->id) }}">Modifica</a></td>
+                        <td> <a class="btn btn-success" href="{{ route('comics.show', $comic->id) }}">Dettagli</a></td>
+                        <td>
+                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Cancella</button>
+                            </form>
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>

@@ -5,7 +5,7 @@
         <div class="container">
             <h2>Comic {{ $comic->id }}</h2>
             <div>
-                <div><a href="/Comics">Torna alla lista dei Comics</a></div>
+                <div><a href="/comics">Torna alla lista dei Comics</a></div>
                 @if (!empty($comic->thumb))
                     <img src="{{ $comic->thumb }}" alt="Comic-image">
                 @else

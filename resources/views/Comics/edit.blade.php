@@ -5,7 +5,7 @@
     <div class="container bg-light mt-4">
         <h2 class="m-3 text-center">Modifica {{ $comic->title }}</h2>
 
-        <form action="{{ route('Comics.update', $comic->id) }}" method="POST">
+        <form action="{{ route('comics.update', ['comic' => $comic->id]) }}" method="POST">
             @method('PUT')
             @csrf
             <div class="form-group">
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Descrizione</label>
-                <textarea class="form-control" id="description" name="description" rows="10" value="{{ $comic->description }}"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="10">{{ $comic->description }}</textarea>
             </div>
             <div>
                 <label for="series">Serie</label>
@@ -36,8 +36,8 @@
                 <label for="type">Tipo</label>
                 <select class="form-control" name="type" id="type">
                     <option value="">seleziona la serie</option>
-                    <option value="comic book" @selected($comic->type === 'comic Book')>Comic Book</option>
-                    <option value="graphic novel" @selected($comic->type === 'Graphic Novel')>Graphic Novel</option>
+                    <option value="comic book" @selected($comic->type === 'comic book')>Comic Book</option>
+                    <option value="graphic novel" @selected($comic->type === 'graphic novel')>Graphic Novel</option>
                 </select>
             </div>
             <div>

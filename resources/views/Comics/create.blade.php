@@ -5,7 +5,7 @@
     <div class="container bg-light mt-4">
         <h2 class="m-3 text-center">Inserisci un nuovo Comic</h2>
 
-        <form action="{{ route('Comics.store') }}" method="POST">
+        <form action="{{ route('comics.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="title">Titolo</label>

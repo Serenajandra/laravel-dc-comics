@@ -11,10 +11,10 @@
                     <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Comics.index') }}">Lista dei Comics</a>
+                    <a class="nav-link" href="{{ route('comics.index') }}">Lista dei Comics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Comics.create') }}">Aggiungi un nuovo Comic</a>
+                    <a class="nav-link" href="{{ route('comics.create') }}">Aggiungi un nuovo Comic</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
