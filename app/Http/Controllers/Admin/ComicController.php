@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comic;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
+
 
 class ComicController extends Controller
 {
@@ -38,7 +41,17 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:5 | max:100',
+            'description' => 'required',
+            'thumb' => 'required',
+            'price' => 'required | max:10',
+            'series' => 'required | max: 100',
+            'sale_date' => 'required',
+            'type' => 'required',
+        ]);
         // dd($request->all());
+        // $formData = $this->Validation($request->all());
         $formData = $request->all();
         $newComic = new Comic();
         $newComic->fill($formData);
@@ -66,9 +79,8 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Comic $comic)
-    // edit($id)
-
     {
+
         // $comic = Comic::find($id);
         // dd($comic);
         return view('comics.edit', compact('comic'));
@@ -83,7 +95,15 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        // dd($id);
+        $request->validate([
+            'title' => 'required|min:5 | max:100',
+            'description' => 'required',
+            'thumb' => 'required',
+            'price' => 'required | max:10',
+            'series' => 'required | max: 100',
+            'sale_date' => 'required',
+            'type' => 'required',
+        ]);
         // $comic = Comic::find($id);
         $formData = $request->all();
         $comic->update($formData);
@@ -101,4 +121,30 @@ class ComicController extends Controller
         $comic->delete();
         return redirect()->route('comics.index');
     }
+
+    // private function validation($data)
+    // {
+    //     $validationResult = Validator::make(
+    //         $data,
+    // [
+    //     'title' => 'required|min:5 | max:100',
+    //     'description' => 'required',
+    //     'thumb' => 'required',
+    //     'price' => 'required | max:10',
+    //     'series' => 'required | max: 100',
+    //     'sale_date' => 'required',
+    //     'type' => 'required',
+    // ],
+    //         [
+    //             'title.required' => 'Questo campo è obbligatorio, non superare i 100 caratteri',
+    //             'description.required' => 'Questo campo è obbligatorio',
+    //             'thumb.required' => 'Questo campo è obbligatorio',
+    //             'price.required' => 'Questo campo è obbligatorio',
+    //             'series.required' => 'Questo campo è obbligatorio, non superare i 100 caratteri',
+    //             'sale_date.required' => 'Questo campo è obbligatorio, inseriscilo in formato americano',
+    //             'type.required' => 'Questo campo è obbligatorio',
+    //         ]
+    //     )->validate();
+    //     return $validationResult;
+    // }
 }

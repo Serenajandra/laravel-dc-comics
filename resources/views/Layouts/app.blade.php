@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @extends('Layouts.partials.header')
+    @include('Layouts.partials.header')
     <main>
         @yield('content')
     </main>

@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="container">
-            <h2>Comic {{ $comic->id }}</h2>
+            <h2> {{ $comic->title }}</h2>
             <div>
                 <div><a href="/comics">Torna alla lista dei Comics</a></div>
                 @if (!empty($comic->thumb))

@@ -8,36 +8,70 @@
         <form action="{{ route('comics.update', ['comic' => $comic->id]) }}" method="POST">
             @method('PUT')
             @csrf
+            @if ($errors->any())
+                <div class="alert alert-warning">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="form-group">
                 <label for="title">Titolo</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ $comic->title }}">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                    value="{{ old('title', $comic->title) }}">
+                @error('title')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="thumb">Immagine</label>
-                <input type="text" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}">
+                <input type="text" class="form-control @error('thumb') is-invalid @enderror" id="thumb"
+                    name="thumb" value="{{ old('thumb', $comic->thumb) }}">
+                @error('thumb')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="price">Prezzo</label>
-                <input type="text" class="form-control" id="price" name="price" value="{{ $comic->price }}">
+                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price"
+                    name="price" value="{{ old('price', $comic->price) }}">
+                @error('price')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="description">Descrizione</label>
-                <textarea class="form-control" id="description" name="description" rows="10">{{ $comic->description }}</textarea>
+                <textarea class="form-control @error('description') is-invalid    @enderror" id="description" name="description"
+                    value="{{ old('description') }}" rows="10">{{ $comic->description }}</textarea>
+                @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div>
                 <label for="series">Serie</label>
-                <input class="form-control" type="text" id="series" name="series" value="{{ $comic->series }}">
+                <input class="form-control @error('series') is-invalid @enderror" type="text" id="series"
+                    name="series" value="{{ old('series', $comic->series) }}">
+                @error('series')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="sale_date">Data di pubblicazione</label>
-                <input type="text" class="form-control" id="sale_date" name="sale_date" value="{{ $comic->sale_date }}">
+                <input type="text" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date"
+                    name="sale_date" value="{{ old('sale_date', $comic->sale_date) }}">
+                @error('series')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="type">Tipo</label>
                 <select class="form-control" name="type" id="type">
                     <option value="">seleziona la serie</option>
-                    <option value="comic book" @selected($comic->type === 'comic book')>Comic Book</option>
-                    <option value="graphic novel" @selected($comic->type === 'graphic novel')>Graphic Novel</option>
+                    <option value="comic book" @selected(old('type', $comic->type) === 'comic book')>Comic Book</option>
+                    <option value="graphic novel" @selected(old('type', $comic->type) === 'graphic novel')>Graphic Novel</option>
                 </select>
             </div>
             <div>

@@ -1,5 +1,5 @@
 @extends('Layouts.app')
-@include('Layouts.partials.header')
+
 @section('title', 'Tutti i comics')
 @section('content')
     <div class="container">

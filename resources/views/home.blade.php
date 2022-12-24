@@ -14,10 +14,9 @@
     @include('Layouts.partials.header')
     <main>
         <section class="banner">
-            <h1 class="text-center bg-dark mt-4 text-light py-4">DC Comics</h1>
+            <h1 class="text-center bg-dark mt-4 text-light py-4">DC Comics List</h1>
             <img src="{{ Vite::asset('resources/img/jumbotron.jpg') }}" alt="">
         </section>
-
     </main>
 </body>
 
